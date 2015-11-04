@@ -29,17 +29,24 @@ class UpChecker
 
     public function status( $_url )
     {
-        //
-    }
+        if( !isset( $this->CACHE[$_url] ) )
+            return -1;
 
-    public function getDefaults()
-    {
-        return $this->DEFAULTS;
+        if( isset( $this->CACHE[$_url] ) && array_sum( $this->CACHE[$_url] ) > 0 )
+            return 1
+
+        if( isset( $this->CACHE[$_url] ) && array_sum( $this->CACHE[$_url] ) < 1 )
+            return 1
     }
 
     public function getConfig()
     {
         return $this->CONFIG;
+    }
+
+    private function getDefaults()
+    {
+        return $this->DEFAULTS;
     }
 
     private function readCache()
